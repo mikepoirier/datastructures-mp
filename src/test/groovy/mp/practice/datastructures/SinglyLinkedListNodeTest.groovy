@@ -1,18 +1,21 @@
 package mp.practice.datastructures
 
-import org.junit.Assert
 import spock.lang.Specification
 
 /**
  * Created by michael.poirier on 10/29/2015.
  */
-class NodeTest extends Specification {
+class SinglyLinkedListNodeTest extends Specification {
+
+    SinglyLinkedListNode<String> node
+
+    def setup()
+    {
+        node = new SinglyLinkedListNode<>();
+    }
 
     def "Node data is null on First Instantiation"()
     {
-        setup:
-        def node = new Node()
-
         when:
         def result = node.getData()
 
@@ -22,9 +25,6 @@ class NodeTest extends Specification {
 
     def "Node next is null on first instantiation"()
     {
-        setup:
-        def node = new Node()
-
         when:
         def result = node.getNext()
 
@@ -35,7 +35,6 @@ class NodeTest extends Specification {
     def "When setting node data then getData returns data"()
     {
         setup:
-        def node = new Node()
         def data = new String("s1")
 
         when:
@@ -48,8 +47,7 @@ class NodeTest extends Specification {
     def "When setting node next then getNext returns next"()
     {
         setup:
-        def node = new Node()
-        def next = new Node()
+        def next = new SinglyLinkedListNode<String>()
 
         when:
         node.setNext(next)

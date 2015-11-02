@@ -5,7 +5,7 @@ package mp.practice.datastructures;
  *
  * @author Mike Poirier
  */
-public class SetImpl {
+public class SetImpl<T> {
 
 	public static final int SIZE = 16;
 	private SinglyLinkedList[] data = new SinglyLinkedList[SIZE];
@@ -13,7 +13,7 @@ public class SetImpl {
 	public SetImpl() {
 		for(int i = 0; i < SIZE; i++)
 		{
-			data[i] = new SinglyLinkedList();
+			data[i] = new SinglyLinkedList<T>();
 		}
 	}
 
@@ -27,12 +27,12 @@ public class SetImpl {
 		return size;
 	}
 
-	public void add(Object object)
+	public void add(T object)
 	{
-		data[hash(object)].add(object);
+		((SinglyLinkedList<T>)data[hash(object)]).add(object);
 	}
 
-	public boolean contains(Object object)
+	public boolean contains(T object)
 	{
 		for(SinglyLinkedList list : data)
 		{

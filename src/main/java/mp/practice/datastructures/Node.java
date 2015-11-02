@@ -1,31 +1,18 @@
 package mp.practice.datastructures;
 
 /**
- * Node
+ * AbsNode
  *
  * @author Mike Poirier
  */
-public class Node {
+public abstract class Node<T> {
+	protected T data;
 
-	private Object data;
-	private Node next;
-
-	public Object getData()
-	{
+	public T getData() {
 		return data;
 	}
 
-	public void setData(Object data)
-	{
+	public void setData(T data) {
 		this.data = data;
-	}
-
-	public Node getNext()
-	{
-		return next;
-	}
-
-	public void setNext(Node next) {
-		this.next = next;
 	}
 }

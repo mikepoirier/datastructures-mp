@@ -5,14 +5,14 @@ package mp.practice.datastructures;
  *
  * @author Mike Poirier
  */
-public class SinglyLinkedList {
+public class SinglyLinkedList<T> {
 
-	private Node head;
-	private Node tail;
+	private SinglyLinkedListNode<T> head;
+	private SinglyLinkedListNode<T> tail;
 	private int size;
 
 	public SinglyLinkedList() {
-		head = new Node();
+		head = new SinglyLinkedListNode<T>();
 		tail = head;
 	}
 
@@ -21,23 +21,23 @@ public class SinglyLinkedList {
 		return size;
 	}
 
-	public void add(Object object)
+	public void add(T object)
 	{
 		if(tail.getData() == null)
 		{
 			tail.setData(object);
 		} else
 		{
-			tail.setNext(new Node());
+			tail.setNext(new SinglyLinkedListNode<T>());
 			tail = tail.getNext();
 			tail.setData(object);
 		}
 		size++;
 	}
 
-	public boolean contains(Object object)
+	public boolean contains(T object)
 	{
-		Node node = head;
+		SinglyLinkedListNode node = head;
 
 		if(size() == 0) return false;
 
@@ -48,6 +48,36 @@ public class SinglyLinkedList {
 			if(node.getData().equals(object)) return true;
 		}
 
+		return false;
+	}
+
+	public boolean remove(T object)
+	{
+		if(this.size() == 0)
+		{
+			return false;
+		}
+		SinglyLinkedListNode<T> node = head;
+
+		// If root has it
+		if(node.getData().equals(object))
+		{
+			head = node.getNext();
+			size--;
+			return true;
+		}
+
+		while(node.getNext() != null)
+		{
+			if(node.getNext().getData().equals(object))
+			{
+				node.setNext(node.getNext().getNext());
+				size--;
+				return true;
+			}
+
+			if(node.getNext() == null) break;
+		}
 		return false;
 	}
 }
